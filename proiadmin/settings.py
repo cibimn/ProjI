@@ -148,7 +148,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-NPM_BIN_PATH = "'/usr/local/bin/npm'"
+NPM_BIN_PATH = "/usr/local/bin/npm"
 
 CRISPY_TEMPLATE_PACK = 'tailwind'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
