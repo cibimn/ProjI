@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <a href="{% url 'I:affirmation-list' %}"> Go back to Affirmations</a>
+    <hr />
+    <h1> Affirmation: {{ affirmation.Affirmation}} </h1>
+    <p> Date:{{ affirmation.date}}</p>
+    <p> Created By:{{ affirmation.agent}}</p>
+    <hr />
+    <a href="{% url 'I:affirmation-update' affirmation.pk %}"> Update </a>
+    <a href="{% url 'I:affirmation-delete' affirmation.pk %}"> Delete </a>
+{% endblock content %}

@@ -1,0 +1,124 @@
+
+{% extends "base.html" %}
+{% load tailwind_filters %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <nav class="flex px-5 py-3 mt-5 text-gray-600 border rounded-lg bg-white-10 bg-black-50" aria-label="Breadcrumb">
+        <ol class="inline-flex items-center space-x-1 md:space-x-3">
+            <li class="inline-flex items-center">
+                <a href="{% url 'welcome-page' %}" class="inline-flex items-center text-sm font-medium text-black-700 hover:text-black-900 dark:text-black-400 dark:hover:text-black">
+                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                Home
+                </a>
+            </li>
+            <li>
+                <div class="flex items-center">
+                <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                <a href="#" class="inline-flex items-center text-sm font-medium text-black-700 hover:text-black-900 dark:text-black-400 dark:hover:text-black">Students</a>
+                </div>
+            </li>
+            <li>
+                <div class="flex items-center">
+                <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                <a href="{% url 'I:customer-detail' customer_update.pk %}" class="inline-flex items-center text-sm font-medium text-black-700 hover:text-black-900 dark:text-black-400 dark:hover:text-black">{{ customer_update.first_name}} {{ customer_update.last_name}}</a>
+                </div>
+            </li>
+            <li>
+                <div class="flex items-center">
+                <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                <a href="#" class="inline-flex items-center text-sm font-medium text-black-700 hover:text-black-900 dark:text-black-400 dark:hover:text-black">Update</a>
+                </div>
+            </li>
+        </ol>
+    </nav>
+    <section class="overflow-hidden text-gray-600 body-font">
+        <div class="container px-5 py-24 mx-auto">
+            <div class="flex flex-wrap mx-auto lg:w-4/5">
+                <div class="w-full mb-6 lg:w-full lg:pr-10 lg:py-6 lg:mb-0">
+                    <h2 class="text-sm tracking-widest text-gray-500 title-font">Student NAME</h2>
+                    <h1 class="mb-4 text-3xl font-medium text-gray-900 title-font">{{ customer_update.name}}</h1>
+                    <div class="flex mb-4">
+                        <a href="{% url 'I:customer-detail' customer_update.pk %}" class="flex-grow px-1 py-2 text-lg border-b-2 border-gray-300">Details</a>
+                        <a href="{% url 'I:customer-update' customer_update.pk %}"  class="flex-grow px-1 py-2 text-lg text-indigo-500 border-b-2 border-indigo-500">Update</a>
+                        <a href="" class="flex-grow px-1 py-2 text-lg border-b-2 border-gray-300">Reviews</a>
+                        <a href="" class="flex-grow px-1 py-2 text-lg border-b-2 border-gray-300">Scores</a>
+                        <a href="" class="flex-grow px-1 py-2 text-lg border-b-2 border-gray-300">Questions</a>
+                    </div>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                    
+                        <button class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" type="submit">Submit</button>
+                    </form>
+                    {% comment %} <p class="mb-4 leading-relaxed">BLA BLA BLA BLA.</p>
+                    <div class="flex py-2 border-t border-gray-200">
+                        <span class="text-gray-500">Email</span>
+                        <span class="ml-auto text-gray-900">{{ customer.Email }}</span>
+                    </div>
+                    <div class="flex py-2 border-t border-gray-200">
+                        <span class="text-gray-500">Age</span>
+                        <span class="ml-auto text-gray-900">{{ customer.Age}}</span>
+                    </div>
+                    <div class="flex py-2 border-t border-gray-200">
+                        <span class="text-gray-500">Classes</span>
+                        <span class="ml-auto text-gray-900">{{ customer.classes}}</span>
+                    </div>
+                    <div class="flex py-2 border-t border-gray-200">
+                        <span class="text-gray-500">Class Staff</span>
+                        <span class="ml-auto text-gray-900">{{ customer.agent}}</span>
+                    </div>
+                    <div class="flex py-2 mb-6 border-t border-b border-gray-200">
+                        <span class="text-gray-500">Registered On</span>
+                        <span class="ml-auto text-gray-900">4</span>
+                    </div> {% endcomment %}
+                    {% comment %} <div class="flex"> {% endcomment %}
+                        {% comment %} <span class="text-2xl font-medium text-gray-900 title-font">$58.00</span> {% endcomment %}
+                        {% comment %} <button class="flex px-6 py-2 ml-auto text-white bg-indigo-500 border-0 rounded focus:outline-none hover:bg-indigo-600">Remove</button> {% endcomment %}
+                        {% comment %} <button class="inline-flex items-center justify-center w-10 h-10 p-0 ml-4 text-gray-500 bg-gray-200 border-0 rounded-full">
+                        <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                            <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                        </svg>
+                        </button> {% endcomment %}
+                </div>
+                {% comment %} <img alt="ecommerce" class="object-cover object-center w-full h-64 rounded lg:w-1/2 lg:h-auto" src="https://dummyimage.com/400x400"> {% endcomment %}
+            </div>
+        </div>
+    </section>
+    <script>
+        $(document).ready(function() {
+            $('#email').keyup(function() {
+                console.log('Updating');
+                var email = $(this).val();
+                if (IsEmail(email)) {
+                    $('#email').addClass('border-red-500');
+                } else {
+                    $('#email').removeClass('border-red-500');
+                }
+            });
+        });
+        function IsEmail(email) {
+            var regex =/^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            if (!regex.test(email)) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+    </script>
+
+{% endblock content %}
+
+
+{% comment %} {% extends "base.html" %}
+
+{% block content %}
+    <a href="{% url 'I:customers-list' %}"> Go back to Customer</a>
+    <hr />
+    <h1> Update Customer: {{ customer_update.First_Name}} {{ customer_update.Last_Name}}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+{% endblock content %} {% endcomment %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section class="text-gray-600 body-font">
+        <div class="container flex flex-wrap px-5 py-24 mx-auto">
+            <div class="flex items-center justify-between w-full py-6 mb-6 border-b border-grey-200">
+                <div>
+                    <h1 class="text-4xl text-grey-800">Staffs</h1>
+                </div>
+                <div>
+                    <a class="ext-grey-400 hover:text-blue-500" href=" {% url 'agents:agent-create' %} ">Create an Staff</a>
+                </div>
+            </div>
+            <div class="flex flex-wrap -m-4">
+                {% for agent in object_list %}
+                    <div class="p-4 lg:w-1/2 md:w-full">
+                        <div class="flex flex-col p-8 bg-white border-2 border-gray-200 border-opacity-50 rounded-lg sm:flex-row">
+                            <div class="inline-flex items-center justify-center flex-shrink-0 w-16 h-16 mb-4 text-indigo-500 bg-indigo-100 rounded-full sm:mr-8 sm:mb-0">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-8 h-8" viewBox="0 0 24 24">
+                                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                                </svg>
+                            </div>
+                            <div class="flex-grow">
+                                <h2 class="mb-3 text-lg font-medium text-gray-900 title-font"> {{ agent.user.username }}</h2>
+                                <p class="text-base leading-relaxed">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
+                                
+                                <a href="{%  url 'agents:agent-detail' agent.pk %}" class="inline-flex items-center mt-3 text-indigo-500"> View
+                                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                                        <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock content %}

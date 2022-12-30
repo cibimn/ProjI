@@ -1,0 +1,54 @@
+{% if request.user.is_authenticated %}
+    <header class="mb-10 text-gray-600 body-font">
+        <div class="container flex flex-col flex-wrap items-center p-5 mx-auto 2xl:flex-row">
+            <a href=" {% url 'welcome-page' %} " class="flex items-center mb-4 font-medium text-gray-900 title-font md:mb-0">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 p-2 text-white bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                </svg>
+                <span class="ml-3 text-xl">Project I</span>
+            </a>
+            <nav class="flex flex-wrap items-center justify-center text-base md:ml-auto">
+                {% if 'welcome-page' != request.resolver_match.url_name %}
+                    {% if not request.user.is_authenticated %}
+                        <a class="mr-5 hover:text-gray-900">SignUp</a>
+                    {% else %}
+                        {% if  request.user.is_organisor %}
+                            <a href="{% url 'agents:agent-list'%}" class="mr-5 hover:text-gray-900">Staffs</a>
+                        {% endif %}
+                        <a href="{% url 'I:customers-list'%}" class="mr-5 hover:text-gray-900">Students</a>
+                        <a href="{% url 'I:affirmation-list'%}" class="mr-5 hover:text-gray-900">Affirmations</a>
+                    {% endif %}
+                {% endif %}
+            </nav>
+            {% if request.user.is_authenticated %}
+                Logged in as: {{ request.user.username }}
+                <a href="{% url 'logout' %}" class="inline-flex items-center px-3 py-1 mt-4 ml-3 text-base bg-gray-200 border-0 rounded focus:outline-none hover:bg-gray-300 md:mt-0">
+                Logout
+                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+                        <path d="M5 12h14M12 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+            {% else %}
+                <a href=" {% url 'login' %} " class="inline-flex items-center px-3 py-1 mt-4 text-base bg-gray-100 border-0 rounded focus:outline-none hover:bg-gray-200 md:mt-0">Login
+                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+            {% endif %}
+            <div class="relative group">
+                <div class="flex items-center px-2 py-1 text-sm border border-b-0 border-white rounded-t-lg cursor-pointer text-blue group-hover:border-grey-light">
+                    <img src="https://placekitten.com/30/30" class="mr-2 rounded-full">
+                    John Doe
+                    <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                </div>
+                <div class="absolute items-center invisible w-full p-1 bg-white border border-t-0 rounded-b-lg group-hover:visible">
+                    <a href="#" class="block px-4 py-2 text-black hover:bg-grey-lighter">View Profile</a>
+                    <a href="#" class="block px-4 py-2 text-black hover:bg-grey-lighter">Edit Profile</a>
+                    <hr class="mx-2 border-t border-grey-ligght">
+                    <a href="#" class="block px-4 py-2 text-black hover:bg-grey-lighter">Logout</a>
+                </div>
+            </div>
+        </div>
+        
+    </header>
+{% endif %}

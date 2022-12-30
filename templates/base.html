@@ -1,0 +1,95 @@
+{% load static %}
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Project I</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js">	</script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/jquery.counterup/1.0/jquery.counterup.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/gh/tofsjonas/sortable/sortable.min.css" rel="stylesheet" />   
+        <script src="https://cdn.jsdelivr.net/gh/tofsjonas/sortable/sortable.min.js"></script>
+        <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js">	</script>
+
+        <!-- <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"> -->
+        <!-- <script src="{% static 'js/jquery.min.js' %}"></script> -->
+        <script src="{% static 'js/popper.min.js' %}"></script>
+        <!-- <script src="{% static 'js/bootstrap.min.js' %}"></script> -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css" />
+        <link rel="stylesheet" href=" {% static 'css/theme.css' %} " />
+        {% tailwind_css %}
+    </head>
+    <body class="bg-gray-100">
+
+        <div class="h-full">
+            <div class="lg:fixed lg:inset-y-0 lg:flex lg:w-64 lg:flex-col lg:border-r lg:border-gray-200 lg:bg-gray-100 ">
+                <!-- for sidebar -->
+                {% include "sidebar.html" %}
+            </div>
+            <div class="flex flex-col lg:pl-64">
+                <section id="base" class="container items-center w-full p-1 mx-auto 2xl:">
+                    <div class="flex justify-end item-end">
+                        <div class="hidden lg:ml-4 lg:flex lg:items-center lg:pr-0.5">
+                            <button type="button" class="flex-shrink-0 p-1 text-indigo-200 rounded-full hover:bg-white hover:bg-opacity-10 hover:text-white focus:outline-none focus:ring-2 focus:ring-white">
+                                <span class="sr-only">View notifications</span>
+                                <!-- Heroicon name: outline/bell -->
+                                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="relative group bg-gray-50">
+                            <button type="button" class="group w-full rounded-md bg-gray-100 px-3.5 py-2 text-left text-sm font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-100" id="options-menu-button" aria-expanded="false" aria-haspopup="true">
+                                <span class="flex items-center justify-between w-full">
+                                    <span class="flex items-center justify-between min-w-0 space-x-3">
+                                        <img class="flex-shrink-0 w-10 h-10 bg-gray-300 rounded-full" src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                                        <span class="flex flex-col flex-1 min-w-0">
+                                            <span class="text-sm font-medium text-gray-900 truncate">Chelsea Hagon</span>
+                                            <span class="text-sm text-gray-500 truncate">@chelseahagon</span>
+                                    </span>
+                                </span>
+                                    <!-- Heroicon name: mini/chevron-up-down -->
+                                <!-- <svg class="flex-shrink-0 w-5 h-5 text-gray-400 group-hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"> -->
+                                <!-- <path fill-rule="evenodd" d="M10 3a.75.75 0 01.55.24l3.25 3.5a.75.75 0 11-1.1 1.02L10 4.852 7.3 7.76a.75.75 0 01-1.1-1.02l3.25-3.5A.75.75 0 0110 3zm-3.76 9.2a.75.75 0 011.06.04l2.7 2.908 2.7-2.908a.75.75 0 111.1 1.02l-3.25 3.5a.75.75 0 01-1.1 0l-3.25-3.5a.75.75 0 01.04-1.06z" clip-rule="evenodd" />
+                                </svg> -->
+                                </span>
+                            </button>
+                            <!-- <div class="absolute items-center invisible w-32 bg-white border border-t-0 rounded-b-lg shadow-lg -right-2 ring-1 ring-black ring-opacity-5 group-hover:visible">
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
+                            </div> -->
+                            <!-- <div class="absolute left-0 right-0 z-10 mx-3 mt-1 origin-top bg-white divide-y divide-gray-200 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none group-hover:visible">
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
+                            </div> -->
+                            <div class="absolute left-0 right-0 z-10 invisible mx-3 mt-1 origin-top bg-white divide-y divide-gray-200 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none group-hover:visible" role="menu" aria-orientation="vertical" aria-labelledby="options-menu-button" tabindex="-1">
+                                <div class="py-1" role="none">
+                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="options-menu-item-0">View profile</a>
+                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="options-menu-item-1">Settings</a>
+                                </div>
+                                <div class="py-1" role="none">
+                                    <a href="{% url 'logout' %}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="options-menu-item-5">Logout</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>         
+                    
+                    <div id="content" class="px-5">
+                        {% block content %}
+    
+                        {% endblock content %}
+                    </div>
+                </section>
+            </div>
+        </div>
+        {% include "scripts.html" %}
+        <script src="" async defer></script>
+    </body>
+</html>
